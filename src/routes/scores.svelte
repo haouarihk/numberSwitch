@@ -80,7 +80,10 @@
 	.menu {
 		background: var(--almost-black);
 		display: flex;
+
 		flex-direction: column;
+		justify-content: space-between;
+		align-items: stretch;
 		padding: 2rem;
 		font-size: 1.3rem;
 	}

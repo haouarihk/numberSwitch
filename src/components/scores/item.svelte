@@ -10,7 +10,7 @@
 	<div>
 		{typeof spot === 'number' ? spot : 'Spot'}
 	</div>
-	<div>
+	<div style="text-align:center;">
 		{typeof name === 'string' ? name : 'Name'}
 	</div>
 	<div>
@@ -23,8 +23,7 @@
 
 <style>
 	div {
-		display: flex;
-		justify-content: space-evenly;
-		align-items: center;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 </style>
