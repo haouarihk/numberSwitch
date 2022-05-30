@@ -1,7 +1,7 @@
 import type { MatrixItemType, MatrixRow } from "src/d/types";
 export class Grid {
-    readonly items: MatrixItemType[];
     grid: MatrixRow[];
+    readonly items: MatrixItemType[];
     readonly width: number;
     readonly height: number;
 
@@ -28,16 +28,8 @@ export class Grid {
 
     randomize(steps: number = 3) {
         this.makeGrid();
-        for (let counter = 0; counter < steps; counter++) {
-            const { x: x1, y: y1 } = this.findTheEmptySpot();
-            const cords = this.getRandomMove();
-            if (!cords) return;
-
-            // check for nearby empty spot
-            if (Math.abs(cords.x - x1) + Math.abs(cords.y - y1) === 1) {
-                this.move(cords);
-            }
-        }
+        for (let counter = 0; counter < steps; counter++)
+            this.move(this.getRandomMove());
     }
 
     move(pos1: { x: number; y: number }) {
@@ -61,6 +53,18 @@ export class Grid {
         return moves.filter(m => m.x >= 0 && m.x < this.grid.length && m.y >= 0 && m.y < this.grid[m.x].length);
     }
 
+    getRandomMove(): { x: number, y: number } {
+        const availableMoves = this.getAvailableMoveSlots()
+        return availableMoves[Math.floor(Math.random() * availableMoves.length)];
+    }
+
+    getMovementDirectionFromPoint(x: number, y: number) {
+        const cords = this.findTheEmptySpot();
+        if (x === cords.x) return y < cords.y ? 'right' : 'left';
+        if (y === cords.y) return x < cords.x ? 'down' : 'up';
+        return undefined;
+    }
+
     find(val: MatrixItemType | undefined) {
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
@@ -79,19 +83,6 @@ export class Grid {
     isAvailableMove(x: number, y: number) {
         return this.getAvailableMoveSlots().some(m => m.x === x && m.y === y);
     }
-
-    getMovementDirectionFromPoint(x: number, y: number) {
-        const cords = this.findTheEmptySpot();
-        if (x === cords.x) return y < cords.y ? 'right' : 'left';
-        if (y === cords.y) return x < cords.x ? 'down' : 'up';
-        return undefined;
-    }
-
-    getRandomMove(): { x: number, y: number } | undefined {
-        const availableMoves = this.getAvailableMoveSlots()
-        return availableMoves[Math.floor(Math.random() * availableMoves.length)];
-    }
-
 
     checkOrder(): boolean {
         for (let i = 0; i < this.grid.length; i++) {
