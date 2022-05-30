@@ -15,33 +15,17 @@
 </script>
 
 <script lang="ts">
-	import moment from 'moment';
-	import { getHighScoreOf, onChange } from '../utils/api';
-	import { Grid } from '../utils/grild';
+	import { Grid } from '../utils/grid';
 	import { turnDiffToNumber } from '../utils';
 
 	import GameHeader from '../components/game/header.svelte';
+	import GameFooter from '../components/game/footer/index.svelte';
 	import GameItem from '../components/game/item.svelte';
-	import { onMount } from 'svelte';
 
 	export let difficulty: string | number;
 
 	let numberOfTries = 0;
 	let numberOfWins = 0;
-
-	let highScore: number;
-	let name: string;
-
-	const getHigh = async () => {
-		name = localStorage.getItem('name') || 'Guest';
-		highScore = await getHighScoreOf(
-			localStorage.getItem('name') || 'guest',
-			turnDiffToNumber(difficulty)
-		);
-	};
-
-	onMount(getHigh);
-	onChange(getHigh);
 
 	let numberOfMoves = 0;
 
@@ -98,28 +82,7 @@
 		{/if}
 	</div>
 
-	<div style="display:flex;justify-content:space-between;align-items: center;">
-		<div style="display:flex;flex-direction: column; justify-content: center; ">
-			<div>Difficulty</div>
-			<div class="bold">{difficulty}</div>
-		</div>
-		<div>
-			<div class="center">
-				<span class="bold">{name}</span>
-			</div>
-			<div>
-				high score: <span class="bold"
-					>{typeof highScore == 'number' ? moment(highScore).format('mm:ss') : 'none'}</span
-				>
-			</div>
-		</div>
-		<div>
-			<div>moves: <span class="bold">{numberOfMoves}</span></div>
-
-			<div>wins: <span class="bold">{numberOfWins}</span></div>
-			<div>tries: <span class="bold">{numberOfTries}</span></div>
-		</div>
-	</div>
+	<GameFooter {numberOfMoves} {numberOfTries} {numberOfWins} {difficulty} />
 </div>
 
 <style>
@@ -157,12 +120,5 @@
 		.bd {
 			gap: 2rem;
 		}
-	}
-
-	.bold {
-		font-weight: bold;
-	}
-	.center {
-		text-align: center;
 	}
 </style>

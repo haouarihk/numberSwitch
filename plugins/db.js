@@ -57,13 +57,14 @@ export class DB {
     }
 
     push({ score, name, diff, moves }) {
+        console.log("tries", score, name, diff, moves)
         if (!this.checkTypes({ score, name, diff, moves })) return;
 
         if (!this.data) this.data = {};
         if (!this.data[diff]) this.data[diff] = {};
         if (!this.data[diff][name]) this.data[diff][name] = [];
         const k = this.data[diff][name];
-
+        console.log("push", score, name, diff, moves)
         // if (k?.find(i => i.score === score)) return;
 
         this.data[diff][name].push({ score, date: Date.now(), moves });

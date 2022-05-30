@@ -10,13 +10,16 @@ export default {
     configureServer(server) {
         const io = new Server(server.httpServer);
 
-
+        let changing = false;
         const myDb = new DB(dbFile, () => {
             console.log("updated")
-            io.sockets.emit('change');
+            if (changing) return;
+            changing = true;
+            setTimeout(() => {
+                io.sockets.emit('change');
+                changing = false;
+            }, 1000)
         });
-
-
 
         io.on('connection', (socket) => {
             console.log("connected")

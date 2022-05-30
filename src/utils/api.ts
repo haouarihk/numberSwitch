@@ -20,8 +20,13 @@ let isFetching = false;
 async function fetchUp() {
     if (isFetching) return;
     isFetching = true;
-    const response = await fetch("/db.json");
-    data = await response.json();
+    const response = await fetch("/db.json", {
+        method: "GET",
+        headers: {
+            'cache-control': 'no-cache'
+        }
+    });
+    data = { ...await response.json() };
     isFetching = false; fetchedBefore = true;
 }
 
@@ -72,6 +77,22 @@ export async function getHighScoreOf(name: string, diff: number) {
         await fetchUp();
     return data?.[diff]?.[name]?.sort(sortingAlg)[0]?.score;
 }
+
+export async function getMySpot(name: string, diff: number) {
+    if (!fetchedBefore)
+        await fetchUp();
+    const index = (await getLeaderBoard(diff)).findIndex(item => item.name === name)
+    return index === -1 ? null : index + 1
+}
+
+
+export async function getHighScore(diff: number) {
+    if (!fetchedBefore)
+        await fetchUp();
+    return (await getLeaderBoard(diff, true))?.[0]?.score;
+}
+
+
 
 export async function submitScore(name: string, score: number, moves: number, diff: number) {
     const highscore = await getHighScoreOf(name, diff);
