@@ -48,7 +48,6 @@
 	const myGrid = new Grid([1, 2, 3, 4, 5, 6, 7, 8]);
 
 	myGrid.randomize(turnDiffToNumber(difficulty));
-	console.log(difficulty);
 	let win: boolean = false;
 
 	// restarts when the user requests

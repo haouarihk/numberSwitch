@@ -16,9 +16,7 @@
 
 	let showOnlyHighScores = false;
 	async function getIt(showOnlyHighScores: boolean = false) {
-		console.log(showOnlyHighScores);
 		items = [...(await getLeaderBoard(selectedSize, showOnlyHighScores))];
-		console.log(items, await getEachLeaderBoardSize(showOnlyHighScores));
 
 		sizes = [...(await getEachLeaderBoardSize(showOnlyHighScores))];
 		console.log({ items, sizes });
