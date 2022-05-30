@@ -68,6 +68,8 @@ export async function getEachLeaderBoardSize(showOnlyHigh: boolean = false) {
 
 
 export async function getHighScoreOf(name: string, diff: number) {
+    if (!fetchedBefore)
+        await fetchUp();
     return data?.[diff]?.[name]?.sort(sortingAlg)[0]?.score;
 }
 
