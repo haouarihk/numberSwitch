@@ -1,7 +1,7 @@
 # NumberSwitch game!
 
 This was a homework project, and i'm proud of it.
-
+![preview](https://github.com/haouarihk/numberSwitch/blob/main/preview/game.gif)
 
 ## simple peak:
 ![main](https://github.com/haouarihk/numberSwitch/blob/main/preview/main.jpg)
