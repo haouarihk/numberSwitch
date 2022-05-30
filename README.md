@@ -4,9 +4,9 @@ This was a homework project, and i'm proud of it.
 
 
 ## simple peak:
-![main](https://github.com/haouarihk/numberSwitch/blob/main/preview/main.jpg?raw=true)
-![game](https://github.com/haouarihk/numberSwitch/blob/main/preview/game.jpg?raw=true)
-![scores](https://github.com/haouarihk/numberSwitch/blob/main/preview/scores.jpg?raw=true)
+![main](https://github.com/haouarihk/numberSwitch/blob/main/preview/main.jpg)
+![game](https://github.com/haouarihk/numberSwitch/blob/main/preview/game.jpg)
+![scores](https://github.com/haouarihk/numberSwitch/blob/main/preview/scores.jpg)
 
 
 ## Developing
