@@ -20,9 +20,9 @@ export class Grid {
         this.grid = [];
         for (let i = 0; i < this.width; i++) {
             this.grid.push([]);
-            for (let j = 0; j < this.height; j++) {
+            for (let j = 0; j < this.height; j++)
                 this.grid[i].push(this.items[i * this.width + j]);
-            }
+
         }
     }
 
@@ -66,13 +66,10 @@ export class Grid {
     }
 
     find(val: MatrixItemType | undefined) {
-        for (let i = 0; i < this.grid.length; i++) {
-            for (let j = 0; j < this.grid[i].length; j++) {
-                if (this.grid[i][j] === val) {
-                    return { x: i, y: j };
-                }
-            }
-        }
+        for (let i = 0; i < this.grid.length; i++)
+            for (let j = 0; j < this.grid[i].length; j++)
+                if (this.grid[i][j] === val) return { x: i, y: j };
+
         return { x: -1, y: -1 };
     }
 
@@ -85,13 +82,8 @@ export class Grid {
     }
 
     checkOrder(): boolean {
-        for (let i = 0; i < this.grid.length; i++) {
-            for (let j = 0; j < this.grid[i].length; j++) {
-                if (this.grid[i][j] !== undefined && this.grid[i][j] !== i * this.width + j + 1) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return !this.grid.some((row, i) => row.some((item, j) =>
+            item !== undefined && item !== i * this.width + j + 1
+        ))
     }
 }
