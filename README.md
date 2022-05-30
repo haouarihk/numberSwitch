@@ -1,5 +1,14 @@
 # NumberSwitch game!
 
+This was a homework project, and i'm proud of it.
+
+
+## simple peak:
+![main](https://github.com/haouarihk/numberSwitch/blob/main/preview/main.jpg?raw=true)
+![game](https://github.com/haouarihk/numberSwitch/blob/main/preview/game.jpg?raw=true)
+![scores](https://github.com/haouarihk/numberSwitch/blob/main/preview/scores.jpg?raw=true)
+
+
 ## Developing
 
 Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
