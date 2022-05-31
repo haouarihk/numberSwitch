@@ -38,7 +38,6 @@ export class Grid {
         let temp = this.grid[pos1.x][pos1.y];
         this.grid[pos1.x][pos1.y] = this.grid[to.x][to.y];
         this.grid[to.x][to.y] = temp;
-        this.grid = [...this.grid]; // to trigger refresh
     }
 
     getAvailableMoveSlots() {

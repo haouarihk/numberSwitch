@@ -9,6 +9,11 @@
 	export let numberOfMoves = 0;
 
 	let time = 0;
+	setInterval(() => {
+		time += 1000;
+	}, 1000);
+
+	moment(time).format('mm:ss'); // '00:00'
 
 	$: win === true &&
 		(function onWin() {
@@ -29,10 +34,6 @@
 				restart();
 			}, 400);
 		})();
-
-	setInterval(() => {
-		time += 1000;
-	}, 1000);
 </script>
 
 <svelte:head>
